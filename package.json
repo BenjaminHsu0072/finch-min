@@ -1,0 +1,21 @@
+{
+  "name": "finch-min",
+  "version": "0.1.0",
+  "description": "Minimal typescript HTTP server.",
+  "license": "MIT",
+  "main": "index.js",
+  "keywords": [],
+  "author": "BenjaminHsu",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminHsu0072/finch-min.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BenjaminHsu0072/finch-min/issues"
+  },
+  "homepage": "https://github.com/BenjaminHsu0072/finch-min#readme",
+  "devDependencies": {
+    "@types/node": "^13.11.0"
+  }
+}
