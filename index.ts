@@ -1,6 +1,7 @@
 export {Finch} from './finch';
 
 export {logger} from './logger';
+export {logColor} from './logger';
 
 export {responseJson} from './response';
 export {response404} from './response';
