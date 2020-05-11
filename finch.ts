@@ -10,7 +10,7 @@ import {IncomingMessage, Server, ServerResponse} from 'http';
 import {finchLog, flogColor} from "finch-log";
 import {response404, responseStaticFiles} from "./response";
 
-let flog = new finchLog();
+
 
 interface parsedRequest extends IncomingMessage
 {
@@ -48,6 +48,7 @@ class Finch
     public handles: handles = {};
     public staticDir: string;
     public allFunctions: middleWareFunction[] = [];
+    public flog = new finchLog();
 
     constructor()
     {
@@ -145,7 +146,7 @@ function createRequestListener(app: Finch): middleWareFunction
 
         if (app.handles.hasOwnProperty(pathname))
         {
-            flog.log(`HANDLE: ${pathname}`,flogColor.green);
+            app.flog.log(`HANDLE: ${pathname}`,flogColor.green);
             try
             {
                 prc(req, res, app.handles[pathname]);
@@ -157,13 +158,13 @@ function createRequestListener(app: Finch): middleWareFunction
         }
         if (staticFilePath)
         {
-            flog.log(`HANDLE: STATIC:: ${pathname}`);
+            app.flog.log(`HANDLE: STATIC:: ${pathname}`);
             responseStaticFiles(res, staticFilePath);
             return;
         }
-        flog.log(`NO_HANDLE! ${pathname}`,flogColor.red);
+        app.flog.log(`NO_HANDLE! ${pathname}`,flogColor.red);
         response404(res);
     }
 }
 
-export {Finch,parsedRequest,nextFunc,postFileInfo}
+export {Finch,middleWareFunction,parsedRequest,ServerResponse,postFileInfo,nextFunc}

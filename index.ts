@@ -1,4 +1,4 @@
-export {Finch} from './finch';
+export {Finch,middleWareFunction,parsedRequest,ServerResponse,postFileInfo} from './finch';
 
 export {responseJson} from './response';
 export {response404} from './response';

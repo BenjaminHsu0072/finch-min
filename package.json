@@ -1,6 +1,6 @@
 {
   "name": "finch-min",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Minimal typescript HTTP server.",
   "license": "MIT",
   "main": "index.js",

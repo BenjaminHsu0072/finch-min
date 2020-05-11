@@ -5,14 +5,17 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
+//node.js class and interfaces
+const http_1 = require("http");
+exports.ServerResponse = http_1.ServerResponse;
 //build in modules
 const finch_log_1 = require("finch-log");
 const response_1 = require("./response");
-let flog = new finch_log_1.finchLog();
 class Finch {
     constructor() {
         this.handles = {};
         this.allFunctions = [];
+        this.flog = new finch_log_1.finchLog();
         this.server = http.createServer(createRequestListener(this));
     }
     listen(port) {
@@ -79,7 +82,7 @@ function createRequestListener(app) {
         req.query = theQuery;
         req.pathName = pathname;
         if (app.handles.hasOwnProperty(pathname)) {
-            flog.log(`HANDLE: ${pathname}`, finch_log_1.flogColor.green);
+            app.flog.log(`HANDLE: ${pathname}`, finch_log_1.flogColor.green);
             try {
                 prc(req, res, app.handles[pathname]);
             }
@@ -89,11 +92,11 @@ function createRequestListener(app) {
             return;
         }
         if (staticFilePath) {
-            flog.log(`HANDLE: STATIC:: ${pathname}`);
+            app.flog.log(`HANDLE: STATIC:: ${pathname}`);
             response_1.responseStaticFiles(res, staticFilePath);
             return;
         }
-        flog.log(`NO_HANDLE! ${pathname}`, finch_log_1.flogColor.red);
+        app.flog.log(`NO_HANDLE! ${pathname}`, finch_log_1.flogColor.red);
         response_1.response404(res);
     };
 }
