@@ -2,10 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var finch_1 = require("./finch");
 exports.Finch = finch_1.Finch;
-var logger_1 = require("./logger");
-exports.logger = logger_1.logger;
-var logger_2 = require("./logger");
-exports.logColor = logger_2.logColor;
 var response_1 = require("./response");
 exports.responseJson = response_1.responseJson;
 var response_2 = require("./response");

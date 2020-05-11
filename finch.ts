@@ -7,8 +7,10 @@ import path = require('path');
 //node.js class and interfaces
 import {IncomingMessage, Server, ServerResponse} from 'http';
 //build in modules
-import {logColor, logger} from "./logger";
+import {finchLog, flogColor} from "finch-log";
 import {response404, responseStaticFiles} from "./response";
+
+let flog = new finchLog();
 
 interface parsedRequest extends IncomingMessage
 {
@@ -143,7 +145,7 @@ function createRequestListener(app: Finch): middleWareFunction
 
         if (app.handles.hasOwnProperty(pathname))
         {
-            logger(`HANDLE: ${pathname}`,logColor.green);
+            flog.log(`HANDLE: ${pathname}`,flogColor.green);
             try
             {
                 prc(req, res, app.handles[pathname]);
@@ -155,11 +157,11 @@ function createRequestListener(app: Finch): middleWareFunction
         }
         if (staticFilePath)
         {
-            logger(`HANDLE: STATIC:: ${pathname}`);
+            flog.log(`HANDLE: STATIC:: ${pathname}`);
             responseStaticFiles(res, staticFilePath);
             return;
         }
-        logger(`NO_HANDLE! ${pathname}`,logColor.red);
+        flog.log(`NO_HANDLE! ${pathname}`,flogColor.red);
         response404(res);
     }
 }
